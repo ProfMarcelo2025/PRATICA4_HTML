@@ -24,5 +24,5 @@ O projeto foi construído de forma incremental, passando por 4 etapas principais
 2. Abra o arquivo `index.html` em qualquer navegador.
 
 ---
-**Professor:** Marcelo - 2026
+**Professor Marcelo** - 2026
 *Projeto com fins didáticos para a turma de Desenvolvimento de Sistemas.*
