@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Viagens a Marte</title>
+    <style>
+        body {
+            background-color: #0b0d17;
+            color: #e2e2e2;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0px;
+            /*Zeramos a margem para o header encostar nas bordas*/
+        }
+
+        header {
+            background-color: rgba(22, 27, 24, 0.95);
+            padding: 20px;
+            border-bottom: 2px solid #ff5e00;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        nav {
+            margin-top: 15px;
+        }
+
+        nav a {
+            color: #00d4ff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transform: 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff5e00;
+        }
+
+        main {
+            max-width: 900px;
+            /*Limitada a largura para uma leitura confortável*/
+            margin: 40px auto;
+            /*Centralizado o bloco na tela*/
+            padding: 0 20px;
+            /*Criado um espaçamento interno na horizontal mas não na vertical*/
+        }
+
+        section {
+            /*Transformando cada section em um card*/
+            background-color: #161b22;
+            /*Criando uma cor diferente para o card*/
+            padding: 40px;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
+            /*Criando uma sombra para dar profundidade e destaque ao card*/
+        }
+
+        img {
+            /*Estilizando a imagem*/
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 15px;
+            border: 3px solid #ff5e00;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #ff5e00;
+            margin-top: 0;
+            /*Jogando o teto para cima*/
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #444;
+            padding: 15px;
+            text-align: left;
+            /*alinhando texto à esquerda*/
+        }
+
+        th {
+            background-color: #ff5e00;
+            color: white;
+        }
+
+        /*a{
+                color: #00d4ff;
+                text-decoration: none;
+                font-weight: bold;
+            }
+            
+            a:hover{
+                text-decoration: underline;
+                color: #80eaff;
+            }*/
+        /*Eliminado o estilo da âncora, já definimos lá em cima*/
+
+        input,
+        select,
+        button {
+            width: 100%;
+            /*Ocupando toda a alrgura do card*/
+            padding: 12px;
+            box-sizing: border-box;
+            /*Garante que o padding não estoure a largura*/
+            border-radius: 5px;
+            border: 1px solid #444;
+            margin-bottom: 15px;
+            background-color: #0d1117;
+            color: white;
+        }
+
+        button {
+            background-color: #ff5e00;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            border: none;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff8c00;
+            box-shadow: 0 0 15px #ff5e00;
+            transform: scale(1.10);
+        }
+
+        /* --- Ajustes específicos para o formulário de reserva --- */
+
+        fieldset {
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        legend {
+            color: #ff5e00;
+            font-weight: bold;
+            padding: 0 10px;
+        }
+
+        /* Container que envolve o radio e a label */
+        .radio-option {
+            display: flex;
+            /* Coloca os itens em linha */
+            align-items: center;
+            /* Alinha verticalmente no centro */
+            margin-bottom: 10px;
+            /* Espaço entre as opções */
+        }
+
+        /* Ajuste vital: o radio button NÃO deve ocupar 100% da largura */
+        .radio-option input[type="radio"] {
+            width: auto;
+            /* Cancela o width: 100% global */
+            margin: 0 10px 0 0;
+            /* Espaço apenas à direita do rádio */
+            cursor: pointer;
+            accent-color: #ff5e00;
+            /* Cor laranja no rádio (navegadores modernos) */
+        }
+
+        .radio-option label {
+            cursor: pointer;
+            margin-bottom: 0;
+            /* Remove margens que podem desalinhá-lo */
+            color: #e2e2e2;
+        }
+
+        /* Estilo para os botões lado a lado no final */
+        #reserva form p:last-child {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Se quiser que o botão de 'Limpar' seja mais discreto */
+        button[type="reset"] {
+            background-color: #333;
+        }
+
+        button[type="reset"]:hover {
+            background-color: #444;
+            box-shadow: 0 0 10px #444;
+        }
+
+        footer {
+            /*Criando estilo para footer*/
+            background-color: #0d1117;
+            padding: 60px 60px;
+            text-align: center;
+            border-top: 2 px solid #ff5e00;
+        }
+
+        footer a {
+            color: #00d4ff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Já é possível viajar de férias para Marte</h1>
+        <nav>
+            <a href="#inicio">Início</a>
+            <a href="#requisitos">Requisitos</a>
+            <a href="#precos">Preços</a>
+            <a href="#reserva">Reservar</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio">
+            <h3>Empresa americana tem a viagem que você sempre sonhou! Férias no planeta Marte, e a preços excepcionais.
+            </h3>
+            <p>
+                <small>Fontes: <i> Agencia de viangens interplanetarias</i></small>
+            </p>
+
+            <img src="planet_mars.jpg" alt="">
+
+            <p> Ja é possivel tirar suas ferias em marte.É a viagem que voce sempre sonhou, e que agora está ao alcance
+                de todos.<br>
+                A viagem é longa, mas é uma experiência unica. Pode levar vários acompanhantes e realizar finalmente o
+                seu sonho. </p>
+            <p> Mas <strong> Muita atenção </strong>são necessários <u>alguns itens preparatórios </u>antes de seguir
+                viagem</p>
+
+        </section>
+
+        <section id="requisitos">
+            <h3>O que necessita para viajar? </h3>
+
+            <p> Para viajar para Marte vai ser necessário:</p>
+
+            <ul>
+                <li>Exames médicos gerais</li>
+                <li> Duas semanas de treino especializadas</li>
+                <li> Passaporte interstelar válido</li>
+                <li>Assinar um termo de responsabilidade</li>
+            </ul>
+
+            <p><strong>Itens adicionais de bagagem:</strong></p>
+            <ul>
+                <li>Traje espacial pressurizado</li>
+                <li>Suprimento de oxigênio para 6 meses</li>
+                <li>Protetor solar fator 500</li>
+            </ul>
+
+            <h3> Procedimentos antes da viagem</h3>
+
+            <ol>
+                <li> Escolher a data da viagem</li>
+                <li> Efetuar os exames médicos necessários </li>
+                <li> Efetuar o pagamento de 50% do valor da viagem</li>
+                <li> Participar das duas semanas de treino especializado com exido </li>
+                <li>Assinar o termo de responsabilidade</li>
+            </ol>
+        </section>
+
+        <section id="precos">
+            <h3>Tabela de Investimento Espacial</h3>
+            <p>Confira nossos pacotes promocionais para os diferentes setores de Marte:</p>
+
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Destino em Marte</th>
+                        <th>Tempo de Viagem</th>
+                        <th>Valor (BTC)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Cratera Gale</td>
+                        <td>6 meses</td>
+                        <td>0.45 BTC</td>
+                    </tr>
+                    <tr>
+                        <td>Monte Olimpo</td>
+                        <td>9 meses</td>
+                        <td>0.70 BTC</td>
+                    </tr>
+                    <tr>
+                        <td>Valles Marineris</td>
+                        <td>7 meses</td>
+                        <td>0.55 BTC</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="reserva">
+            <h3>Solicite sua Reserva</h3>
+            <p>Preencha os campos abaixo para que nossa agência entre em contato com você:</p>
+
+            <form>
+                <p>
+                    <label for="nome">Nome completo:</label>
+                    <input type="text" name="nome" id="nome" placeholder="Digite seu nome" required>
+                </p>
+
+                <p>
+                    <label for="email">E-mail:</label>
+                    <input type="email" name="email" id="email" placeholder="seuemail@mail.com" required>
+                </p>
+
+                <p>
+                    <label for="destino">Destino desejado:</label>
+                    <select name="destino" id="destino">
+                        <option value="gale">Cratera Gale</option>
+                        <option value="olimpo">Monte Olimpo</option>
+                        <option value="marineris">Valles Marineris</option>
+                    </select>
+                </p>
+
+                <fieldset>
+                    <legend>Nível de coragem:</legend>
+
+                    <div class="radio-option">
+                        <input type="radio" name="coragem" id="baixo" value="baixo">
+                        <label for="baixo">Baixo</label>
+                    </div>
+
+                    <div class="radio-option">
+                        <input type="radio" name="coragem" id="alto" value="alto">
+                        <label for="alto">Alto (Pronto para Marte!)</label>
+                    </div>
+                </fieldset>
+
+
+                <p>
+                    <button type="submit">Enviar interesse</button>
+                    <button type="reset">Limpar</button>
+                </p>
+            </form>
+
+            <h2>MUITO IMPORTANTE</h2>
+        </section>
+
+
+    </main>
+
+    <footer>
+        <P>A viagem só está disponível para maiores de idade.</P>
+        <p>Para obter informações detalhadas, consulte os links abaixo</p>
+
+        <a href="">Centro médico para viagens à Marte</a> |
+        <a href="">Agência de viagens</a> |
+        <a href="">Regulamentos, Termos e condições</a> |
+
+        <p>
+            <a href="https://www.nasa.gov" target="_blank">Clique aqui para reservar sua poltrona no foguete</a>
+        </p>
+
+        <h3>Estamos a sua espera!</h3>
+    </footer>
+</body>
+
+</html>
